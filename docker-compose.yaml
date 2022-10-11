@@ -1,0 +1,22 @@
+version: "3"
+services:
+  web:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/app
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - db  
+  db:
+    container_name: mongo_database
+    image: mongo:4.4.6
+    volumes:
+      - data1:/data/db
+      - config1:/data/configdb
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+volumes:
+  data1:
+  config1:
